@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Washcation Laundry - Kuta Mandalika</title>
+  <link rel="icon" href="Favicon %26 Logo/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #lightTravelerItems[hidden] {
+      display: none !important;
+    }
+
+    #lightTravelerToggle[aria-expanded="true"] .item-toggle__chevron {
+      transform: rotate(180deg);
+    }
+
+    #pricing .pricing-card__header > div {
+      min-width: 0;
+    }
+
+    #pricing .pricing-card__badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem 0.375rem;
+    }
+
+    #pricing .pricing-card__badges .pricing-card__badge {
+      margin: 0;
+    }
+
+    #pricing .pricing-card__badge--short-stays {
+      background: transparent;
+      color: #FFFAF0;
+      box-shadow: inset 0 0 0 1px #D2A75D;
+      font-size: 0.625rem;
+      letter-spacing: 0.04em;
+      white-space: normal;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      #pricing .pricing-card__badge--short-stays {
+        opacity: 0;
+        transform: translateX(-0.25rem);
+        transition: opacity 160ms ease, transform 160ms ease;
+      }
+
+      #pricing .pricing-card--express:is(:hover, :focus-visible) .pricing-card__badge--short-stays {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      #pricing .pricing-card--express:focus-visible {
+        outline: 2px solid #AD762E;
+        outline-offset: 3px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #pricing .pricing-card__badge--short-stays {
+        transition: none;
+      }
+    }
+
+    @media (min-width: 960px) {
+      #pricing .pricing-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      #pricing .pricing-grid > .pricing-card {
+        grid-column: span 2;
+      }
+
+      #pricing .pricing-grid > .pricing-card--subscription {
+        grid-column: 2 / span 2;
+      }
+
+      #pricing .pricing-grid > .pricing-card--shoes {
+        grid-column: 4 / span 2;
+      }
+
+      #pricing .pricing-grid > .pricing-card--wide {
+        grid-column: 1 / -1;
+      }
+    }
+
+    #leadForm #privacyError:not(:empty) {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      margin-top: 0.375rem;
+      color: #A13A29;
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">
+        <img src="Favicon %26 Logo/Logo.png" alt="Washcation Laundry" />
+      </a>
+      <span class="navbar__badge">Pre-launch · Kuta Mandalika</span>
+    </div>
+  </header>
+
+  <!-- ========== HERO + LEAD FORM ========== -->
+  <section class="hero" id="top" style="background-image: url('Hero Image.png')">
+    <div class="container hero__grid">
+
+      <!-- Left: copy -->
+      <div class="hero__copy">
+        <p class="hero__eyebrow">Coming soon to Kuta Mandalika, Lombok</p>
+        <h1 class="hero__headline">You Enjoy<br>the Journey.<br><em>We Handle<br>the Laundry.</em></h1>
+        <p class="hero__sub">
+          Laundry pickup &amp; delivery at your accommodation, with your choice of scent.
+          We're launching soon. Be the first to know.
+        </p>
+        <ul class="hero__proof">
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            We pick up from your stay
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Wash with your favourite scent
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            We'll confirm your total after weighing your laundry
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: lead form -->
+      <div class="hero__form-wrap">
+        <div class="form-card">
+          <p class="form-card__eyebrow">Early Access</p>
+          <h2 class="form-card__title">Join the waitlist</h2>
+          <p class="form-card__desc">Join the waitlist and we'll send you an Instagram DM when we launch.</p>
+
+          <form class="lead-form" id="leadForm" novalidate>
+
+            <!-- Promo highlight -->
+            <div class="promo-highlight">
+              <div class="promo-highlight__badge">15% OFF</div>
+              <div class="promo-highlight__body">
+                <p class="promo-highlight__title">Subscription</p>
+                <p class="promo-highlight__desc">The first 50 people to join our waitlist get 15% off our Subscription plan. If you qualify, we'll reach out via Instagram DM when we launch.</p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="" autocomplete="name" required />
+              <span class="field__error" id="nameError"></span>
+            </div>
+            <div class="field">
+              <label for="instagram">Instagram username</label>
+              <div class="field__prefix-wrap">
+                <span class="field__prefix">@</span>
+                <input type="text" id="instagram" name="instagram" placeholder="" autocomplete="off" required />
+              </div>
+              <span class="field__error" id="igError"></span>
+            </div>
+
+            <p class="form-card__scent-label">Preferred scent <span>(optional)</span></p>
+            <div class="scent-options" role="radiogroup" aria-label="Preferred scent">
+              <label class="scent-chip">
+                <input type="radio" name="scent" value="clean-fresh" />
+                <img src="Washcation Scent Icons/clean-fresh.png" alt="" class="scent-chip__icon" aria-hidden="true" />
+                <span class="scent-chip__name">Clean &amp; Fresh</span>
+              </label>
+              <label class="scent-chip">
+                <input type="radio" name="scent" value="floral" />
+                <img src="Washcation Scent Icons/floral.png" alt="" class="scent-chip__icon" aria-hidden="true" />
+                <span class="scent-chip__name">Floral</span>
+              </label>
+              <label class="scent-chip">
+                <input type="radio" name="scent" value="oceanic" />
+                <img src="Washcation Scent Icons/oceanic.png" alt="" class="scent-chip__icon" aria-hidden="true" />
+                <span class="scent-chip__name">Oceanic</span>
+              </label>
+            </div>
+
+            <div class="field field--checkbox">
+              <label class="checkbox-label">
+                <input type="checkbox" id="privacyConsent" name="privacyConsent" aria-describedby="privacyError" required />
+                <span class="checkbox-box" aria-hidden="true"></span>
+                <span class="checkbox-text">
+                  I agree to Washcation's
+                  <button type="button" class="privacy-link" id="privacyToggle" aria-expanded="false" aria-controls="privacyPolicy">Privacy Policy</button>.
+                  Your name, Instagram username, and scent preference will only be used to notify you when we launch.
+                </span>
+              </label>
+              <span class="field__error" id="privacyError" aria-live="polite" aria-atomic="true"></span>
+            </div>
+
+            <!-- Privacy policy expandable -->
+            <div class="privacy-policy" id="privacyPolicy" hidden>
+              <h4 class="privacy-policy__title">Privacy Policy</h4>
+              <p>Washcation Laundry collects your name, Instagram username, and preferred scent (if provided) solely to notify you when our service launches in Kuta Mandalika, Lombok.</p>
+              <ul>
+                <li><strong>What we collect:</strong> Full name, Instagram username, and preferred scent (optional).</li>
+                <li><strong>How we use it:</strong> To send you a one-time launch notification via Instagram direct message. Your scent preference may be referenced when you place your first order.</li>
+                <li><strong>We will not:</strong> sell, share, or use your data for any other purpose.</li>
+                <li><strong>Retention:</strong> Your data is deleted within 30 days after our official launch.</li>
+                <li><strong>Your rights:</strong> You may request removal at any time by messaging us on Instagram.</li>
+              </ul>
+            </div>
+
+            <button type="submit" class="btn btn--honey btn--full">Join Early Access</button>
+            <p class="form-card__privacy">No spam. Unsubscribe anytime.</p>
+          </form>
+
+          <!-- Success state -->
+          <div class="form-success" id="formSuccess" hidden>
+            <div class="form-success__icon" aria-hidden="true">✓</div>
+            <h3>You're on the list!</h3>
+            <p>When Washcation launches, we'll send you an Instagram DM with everything you need to place your first booking.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="section how" id="how-it-works">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Simple &amp; effortless</p>
+        <h2 class="section__title">How it works</h2>
+        <p class="section__sub">Here's how to book once we launch.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">01</div>
+          <img src="symbol/how-01-book-pickup.png" alt="" class="step__icon" aria-hidden="true" />
+          <h3 class="step__title">Book a pickup</h3>
+          <p class="step__desc">Choose your package, pick a scent, and schedule a pickup time from your accommodation.</p>
+        </div>
+        <div class="step step--arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <img src="symbol/how-02-pickup-wash.png" alt="" class="step__icon" aria-hidden="true" />
+          <h3 class="step__title">We pick up, weigh &amp; confirm</h3>
+          <p class="step__desc">We collect your laundry, weigh it, and send you a total via WhatsApp for your approval before we start washing.</p>
+        </div>
+        <div class="step step--arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <img src="symbol/how-03-delivered-back.png" alt="" class="step__icon" aria-hidden="true" />
+          <h3 class="step__title">Delivered back to you</h3>
+          <p class="step__desc">Fresh, fragrant clothes returned right to your accommodation, timed around your stay.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SCENT MENU ========== -->
+  <section class="section scents" id="scents">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Our signature collection</p>
+        <h2 class="section__title">Choose your scent</h2>
+        <p class="section__sub">Every wash comes with a scent you actually want on your clothes.</p>
+      </div>
+
+      <div class="scent-cards">
+        <div class="scent-card">
+          <img src="Washcation Scent Icons/clean-fresh.png" alt="Clean &amp; Fresh scent icon" class="scent-card__icon" />
+          <h3 class="scent-card__name">Clean &amp; Fresh</h3>
+          <p class="scent-card__desc">Light, airy, and effortlessly clean. Like your clothes just came from a morning breeze.</p>
+        </div>
+        <div class="scent-card scent-card--featured">
+          <img src="Washcation Scent Icons/floral.png" alt="Floral scent icon" class="scent-card__icon scent-card__icon--ivory" />
+          <h3 class="scent-card__name">Floral</h3>
+          <p class="scent-card__desc">Soft and subtly sweet. A gentle floral finish that feels like a vacation in every fold.</p>
+        </div>
+        <div class="scent-card">
+          <img src="Washcation Scent Icons/oceanic.png" alt="Oceanic scent icon" class="scent-card__icon" />
+          <h3 class="scent-card__name">Oceanic</h3>
+          <p class="scent-card__desc">Crisp, cool, and coastal. Inspired by the sea breeze of Mandalika.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES & PRICING ========== -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Transparent pricing</p>
+        <h2 class="section__title">Our packages</h2>
+        <p class="section__sub">Compare our laundry packages and prices to find the right fit for your stay.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Classic -->
+        <div class="pricing-card">
+          <div class="pricing-card__header">
+            <img src="symbol/01-classic.png" alt="" class="pricing-card__icon" aria-hidden="true" />
+            <div>
+              <h3 class="pricing-card__name">The Daily Trip</h3>
+              <span class="pricing-card__badge">Classic</span>
+            </div>
+          </div>
+          <p class="pricing-card__desc">Wash, Iron &amp; Fold, standard turnaround.</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">Rp 9.000</span>
+            <span class="pricing-card__unit">/kg · min. 2 kg</span>
+          </div>
+          <div class="pricing-card__detail">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Ready in 3 days
+          </div>
+        </div>
+
+        <!-- Next Day -->
+        <div class="pricing-card">
+          <div class="pricing-card__header">
+            <img src="symbol/02-next-day.png" alt="" class="pricing-card__icon" aria-hidden="true" />
+            <div>
+              <h3 class="pricing-card__name">Tomorrow's Fresh</h3>
+              <span class="pricing-card__badge pricing-card__badge--sage">Next Day</span>
+            </div>
+          </div>
+          <p class="pricing-card__desc">Wash, Iron &amp; Fold, back by tomorrow.</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">Rp 10.000</span>
+            <span class="pricing-card__unit">/kg · min. 2 kg</span>
+          </div>
+          <div class="pricing-card__detail">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Ready in 1 day
+          </div>
+        </div>
+
+        <!-- Express -->
+        <div class="pricing-card pricing-card--featured pricing-card--express" tabindex="0">
+          <div class="pricing-card__header">
+            <img src="symbol/03-express.png" alt="" class="pricing-card__icon pricing-card__icon--ivory" aria-hidden="true" />
+            <div>
+              <h3 class="pricing-card__name">Quick Getaway</h3>
+              <div class="pricing-card__badges">
+                <span class="pricing-card__badge pricing-card__badge--honey">Express</span>
+                <span class="pricing-card__badge pricing-card__badge--short-stays">Best for short stays</span>
+              </div>
+            </div>
+          </div>
+          <p class="pricing-card__desc">Wash, Iron &amp; Fold, perfect before checkout.</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">Rp 15.000</span>
+            <span class="pricing-card__unit">/kg · min. 1 kg</span>
+          </div>
+          <div class="pricing-card__detail">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Ready in 3–6 hours
+          </div>
+        </div>
+
+        <!-- Subscription -->
+        <div class="pricing-card pricing-card--subscription">
+          <div class="pricing-card__header">
+            <img src="symbol/06-stay-plan.png" alt="" class="pricing-card__icon" aria-hidden="true" />
+            <div>
+              <h3 class="pricing-card__name">Subscription</h3>
+              <span class="pricing-card__badge pricing-card__badge--sage">Best for long stay</span>
+            </div>
+          </div>
+          <p class="pricing-card__desc">Recurring pickup scheduled at the time of booking. Billed per pickup. No minimum commitment.</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">Rp 8.000</span>
+            <span class="pricing-card__unit">/kg · min. 2 kg</span>
+          </div>
+          <div class="pricing-card__detail">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Scheduled pickup
+          </div>
+        </div>
+
+        <!-- Shoes -->
+        <div class="pricing-card pricing-card--shoes">
+          <div class="pricing-card__header">
+            <img src="symbol/04-steps.png" alt="" class="pricing-card__icon" aria-hidden="true" />
+            <div>
+              <h3 class="pricing-card__name">Sole Vacation</h3>
+              <span class="pricing-card__badge">Shoes</span>
+            </div>
+          </div>
+          <p class="pricing-card__desc">Professional shoe cleaning, looking sharp again.</p>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">Rp 20.000</span>
+            <span class="pricing-card__unit">/pair</span>
+          </div>
+          <div class="pricing-card__detail">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            2–3 days
+          </div>
+        </div>
+
+        <!-- Light Traveler -->
+        <div class="pricing-card pricing-card--wide">
+          <div class="pricing-card__header">
+            <img src="symbol/05-item-care.png" alt="" class="pricing-card__icon" aria-hidden="true" />
+            <div>
+              <h3 class="pricing-card__name">Light Traveler</h3>
+              <span class="pricing-card__badge">Per item</span>
+            </div>
+          </div>
+          <p class="pricing-card__desc"><strong>Individual care for every piece.</strong> We check care labels and tailor the wash and finish to each fabric, from your favourite clothes to bedding and linen.</p>
+          <p class="pricing-card__turnaround">Turnaround time confirmed after we check your items.</p>
+
+          <button type="button" class="item-toggle" id="lightTravelerToggle" aria-expanded="false" aria-controls="lightTravelerItems">
+            <span class="item-toggle__label">Show items &amp; prices</span>
+            <svg class="item-toggle__chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="item-pricing" id="lightTravelerItems" hidden>
+            <div class="item-pricing__col">
+              <h4>Clothing</h4>
+              <ul>
+                <li><span>T-shirt / Tank Top</span><span>Rp 10.000</span></li>
+                <li><span>Shorts</span><span>Rp 12.000</span></li>
+                <li><span>Shirt / Blouse</span><span>Rp 15.000</span></li>
+                <li><span>Trousers / Jeans</span><span>Rp 18.000</span></li>
+                <li><span>Hoodie / Light Jacket</span><span>Rp 25.000</span></li>
+                <li><span>Casual Dress</span><span>Rp 25.000</span></li>
+                <li><span>Long Dress</span><span>Rp 35.000</span></li>
+              </ul>
+            </div>
+            <div class="item-pricing__col">
+              <h4>Bedding &amp; Linen</h4>
+              <ul>
+                <li><span>Pillowcase</span><span>Rp 10.000</span></li>
+                <li><span>Bath Towel</span><span>Rp 15.000</span></li>
+                <li><span>Bed Sheet</span><span>Rp 25.000</span></li>
+                <li><span>Duvet Cover</span><span>Rp 35.000</span></li>
+                <li><span>Bedcover</span><span>Rp 25.000</span></li>
+                <li><span>Sheets (Set)</span><span>Rp 25.000</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="pricing__service-area">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" style="width:14px;height:14px;vertical-align:-2px;flex-shrink:0"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.5v4l2.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Pickup &amp; delivery is included in all package rates, within a 10 km radius of Kuta Mandalika. Not sure if your accommodation is covered? We'll confirm when you book.
+      </p>
+
+      <p class="pricing__disclaimer">
+        * Bookings open at launch. Join the waitlist to get notified.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== FINAL CTA ========== -->
+  <section class="section cta-section">
+    <div class="container cta-section__inner">
+      <div class="cta-section__tote">
+        <img src="Favicon %26 Logo/Logo.png" alt="Washcation Laundry" class="cta-section__logo" />
+      </div>
+      <div class="cta-section__copy">
+        <p class="section__eyebrow">Don't miss out</p>
+        <h2 class="section__title">Be first when we launch.</h2>
+        <p class="section__sub">Join our waitlist and get early access to Washcation in Kuta Mandalika.</p>
+        <a href="#top" class="btn btn--honey cta-section__btn">Join Early Access ↑</a>
+        <p class="cta-section__tagline"><em>You Enjoy the Journey. We Handle the Laundry.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img src="Favicon %26 Logo/Logo.png" alt="Washcation Laundry" class="footer__logo" />
+      <p class="footer__copy">© 2026 Washcation Laundry · Kuta Mandalika, Lombok · Pre-launch</p>
+      <p class="footer__tagline"><em>Travel more. Wash less.</em></p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const toggle = document.getElementById('lightTravelerToggle');
+      const items = document.getElementById('lightTravelerItems');
+      const label = toggle.querySelector('.item-toggle__label');
+
+      toggle.addEventListener('click', (event) => {
+        // Keep any older Light Traveler handler in main.js from toggling twice.
+        event.stopImmediatePropagation();
+        const open = items.hidden;
+        items.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        label.textContent = open ? 'Hide items & prices' : 'Show items & prices';
+      }, { capture: true });
+    })();
+  </script>
+  <script>
+    (() => {
+      const form = document.getElementById('leadForm');
+      const consent = document.getElementById('privacyConsent');
+      const warning = document.getElementById('privacyError');
+
+      form.addEventListener('submit', (event) => {
+        if (consent.checked) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        consent.setAttribute('aria-invalid', 'true');
+        warning.textContent = 'Please agree to the Privacy Policy before joining Early Access.';
+        consent.focus();
+      }, { capture: true });
+
+      consent.addEventListener('change', () => {
+        if (!consent.checked) return;
+
+        consent.removeAttribute('aria-invalid');
+        warning.textContent = '';
+      });
+    })();
+  </script>
+  <script src="main.js"></script>
+  <script src="washcation-flower-effects.js"></script>
+</body>
+</html>
